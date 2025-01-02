@@ -12,8 +12,8 @@ Config.maxReward = 0 -- Max amount of xp that can be gained from pushing a vehic
 Config.healthMin = 2000.0 -- Minimum health of vehicle to be able to push it.
 Config.flipTime = 10000
 
-Config.blacklist = { -- blacklist vehicle models from being pushed.
-    [`phantom`] = true,
-    [`boxville`] = true,
-    [`pounder`] = true
+Config.blacklist = {
+    phantom = true,
+    boxville = true,
+    pounder = true
 }

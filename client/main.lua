@@ -90,16 +90,21 @@ end
 
 local function startPushing(vehicle)
     if LocalPlayer.state.intrunk then return end
+
     local health = GetVehicleEngineHealth(vehicle) <= Config.healthMin and true or false
     if not health then return end
+
     local flipped = IsEntityUpsidedown(vehicle) and true or false
     if flipped then return end
+
     local min, max = GetModelDimensions(GetEntityModel(vehicle))
     local size = max - min
     local coords = GetEntityCoords(ped)
     local closest = #(coords - GetOffsetFromEntityInWorldCoords(vehicle, 0.0, (size.y / 2), 0.0)) < #(coords - GetOffsetFromEntityInWorldCoords(vehicle, 0.0, (-size.y / 2), 0.0)) and 'bonnet' or 'trunk'
     local veh = GetNetworkIdFromEntity(vehicle)
+
     if veh == nil then return end
+
     local start = lib.callback.await('ls_pushvehicle:startPushing', 500, veh, closest)
     if start then
         vehiclepushing = vehicle
@@ -165,10 +170,17 @@ if Config.target then
             canInteract = function(entity)
                 if LocalPlayer.state.intrunk then return false end
                 if pushing then return false end
+
                 local health = GetVehicleEngineHealth(entity) <= Config.healthMin and true or false
                 if not health then return false end
+
                 local flipped = IsEntityUpsidedown(entity) and true or false
                 if flipped then return false end
+
+                local model = GetEntityModel(entity) -- Récupère le modèle de l'entité
+                local modelName = GetDisplayNameFromVehicleModel(model):lower() -- Convertit en minuscule pour correspondre à la blacklist
+                if Config.blacklist[modelName] then return false end
+
                 return true
             end
         },
