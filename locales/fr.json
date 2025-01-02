@@ -1,0 +1,5 @@
+{
+    "push_vehicle": "Pousser le véhicule",
+    "stop_push_vehicle": "Arrêter de pousser le véhicule",
+    "stop_push_vehicle_ui": "Appuyez sur [%s] pour arrêter de pousser le véhicule."
+}

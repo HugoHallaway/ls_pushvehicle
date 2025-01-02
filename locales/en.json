@@ -1,0 +1,5 @@
+{
+    "push_vehicle": "Push vehicle",
+    "stop_push_vehicle": "Stop pushing vehicle",
+    "stop_push_vehicle_ui": "Press [%s] for stop pushing the vehicle."
+}
